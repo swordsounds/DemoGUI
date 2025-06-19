@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+	  <Nullable>enable</Nullable>
+	  <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\offlineImage.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Esri.ArcGISRuntime.WPF" Version="200.7.0" />
+    <PackageReference Include="OpenCvSharp4.Windows" Version="4.11.0.20250507" />
+    <PackageReference Include="OpenCvSharp4.WpfExtensions" Version="4.11.0.20250507" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Themes\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\offlineImage.png" />
+  </ItemGroup>
+
+</Project>

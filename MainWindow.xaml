@@ -1,0 +1,34 @@
+﻿<Window x:Class="DisplayAnOfflineMapOnDemand.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DisplayAnOfflineMapOnDemand"
+        xmlns:controls="clr-namespace:DisplayAnOfflineMapOnDemand.Controls" 
+        xmlns:viewmodel="clr-namespace:DisplayAnOfflineMapOnDemand.ViewModel" 
+        xmlns:view="clr-namespace:DisplayAnOfflineMapOnDemand.View"
+        d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        Title="MainWindow" Height="1080" Width="1920"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        Background="Transparent">
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="1" 
+                      CornerRadius="8" 
+                      GlassFrameThickness="1" 
+                      ResizeBorderThickness="10"/>
+    </WindowChrome.WindowChrome>
+    <Grid>
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type viewmodel:NACViewModel}">
+                <view:NavigationAndControl />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodel:TelemViewModel}">
+                <view:Telemetry />
+            </DataTemplate>
+        </Grid.Resources>
+        
+        <ContentControl Content="{Binding CurrentViewModel}" />
+    </Grid>
+</Window>  

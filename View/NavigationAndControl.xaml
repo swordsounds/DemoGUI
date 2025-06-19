@@ -1,0 +1,178 @@
+﻿<UserControl x:Class="DisplayAnOfflineMapOnDemand.View.NavigationAndControl"  
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"  
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"  
+            xmlns:local="clr-namespace:DisplayAnOfflineMapOnDemand"  
+            xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"  
+            xmlns:controls="clr-namespace:DisplayAnOfflineMapOnDemand.Controls"  
+            xmlns:viewmodel="clr-namespace:DisplayAnOfflineMapOnDemand.ViewModel"
+            mc:Ignorable="d"
+            d:DesignHeight="1080"
+            d:DesignWidth="1920"
+            d:DataContext="{d:DesignInstance Type=viewmodel:NACViewModel}"
+            Background="Transparent">  
+
+    <UserControl.Resources>  
+        <viewmodel:MapViewModel x:Key="MapViewModel" />  
+    </UserControl.Resources>
+
+    <!-- Removed WindowChrome as it can only be applied to Window -->
+    
+    <Border CornerRadius="8"  
+            BorderBrush="#09090B"  
+            BorderThickness="10"  
+            Background="Transparent">  
+        <Grid Background="#09090B">  
+
+            <Grid.ColumnDefinitions>  
+                <ColumnDefinition/>  
+                <ColumnDefinition/>  
+                <ColumnDefinition/>  
+                <ColumnDefinition/>  
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>  
+            <Grid.RowDefinitions>  
+                <RowDefinition />  
+                <RowDefinition />  
+                <RowDefinition />  
+                <RowDefinition />  
+                <RowDefinition />  
+                <RowDefinition />  
+                <RowDefinition />  
+                <RowDefinition />  
+                <RowDefinition />  
+            </Grid.RowDefinitions>  
+            <Border Grid.ColumnSpan="2"  
+                    Grid.RowSpan="5"  
+                    BorderThickness="4"  
+                    BorderBrush="#09090B"  
+                    CornerRadius="8"  
+                    Margin="-4,6,6,-4"  
+                    Panel.ZIndex="1"/>  
+            <esri:MapView x:Name="MainMapView"  
+                    Map="{Binding Map, Source={StaticResource MapViewModel}}"  
+                    GraphicsOverlays="{Binding GraphicsOverlays, Source={StaticResource MapViewModel}}"   
+                    Margin="0,10,10,0"  
+                    Grid.Column="0"  
+                    Grid.Row="0"  
+                    Grid.ColumnSpan="2"  
+                    Grid.RowSpan="5"/>  
+
+            <Border Grid.Column="2"  
+                    Grid.ColumnSpan="5"  
+                    Grid.RowSpan="5"  
+                    BorderThickness="4"  
+                    BorderBrush="#09090B"  
+                    CornerRadius="8"  
+                    Margin="-4,6,-4,-4"  
+                    Panel.ZIndex="1"/>  
+            <Image x:Name="FrameImage"  
+                   Margin="0,10,0,0"  
+                   Grid.Column="2"  
+                   Width="1150"  
+                   Height="1000"  
+                   Grid.ColumnSpan="5"  
+                   Grid.RowSpan="5"  
+                   Source="{Binding FrameImage}"  
+                   />  
+            <Image x:Name="FrameImage1"  
+                   Margin="0,10,10,0"  
+                   Grid.Column="4"  
+                   Grid.ColumnSpan="2"  
+                   Grid.Row="5"  
+                   Grid.RowSpan="3"  
+                   Source="/Assets/offlineImage.png"  
+                   />  
+            <Image x:Name="FrameImage2"  
+                   Margin="0,10,10,0"  
+                   Grid.Column="2"  
+                   Grid.Row="5"  
+                   Grid.ColumnSpan="2"  
+                   Grid.RowSpan="3"  
+                   Source="/Assets/offlineImage.png"  
+                   />  
+
+            <Grid Grid.Column="0"  
+                  Grid.ColumnSpan="6"  
+                  Grid.Row="0"  
+                  Height="20"  
+                  VerticalAlignment="Top"  
+                  Panel.ZIndex="10">  
+
+                <StackPanel Orientation="Horizontal"  
+                    HorizontalAlignment="Right"  
+                    Grid.Column="5"  
+                    VerticalAlignment="Top"  
+                    >  
+                    <Button x:Name="btnMin"  
+                    Content="--"  
+                    Width="20"  
+                    Height="20"  
+                    Margin="0"  
+                    Command="{Binding WindowHide}"  
+                    Style="{StaticResource btnDefault}"/>  
+
+                    <Button x:Name="btnMax"  
+                    Content="[-]"  
+                    Width="20"  
+                    Height="20"  
+                    FontSize="12"  
+                    Margin="0"  
+                    Command="{Binding WindowSize}"  
+                    Style="{StaticResource btnDefault}"/>  
+
+                    <Button x:Name="btnClose"  
+                    Content="X"  
+                    Width="20"  
+                    Height="20"  
+                    FontSize="12"  
+                    Margin="0"  
+                    Command="{Binding WindowClose}"  
+                    Style="{StaticResource btnDefault}"/>  
+
+                </StackPanel>  
+            </Grid>  
+
+            <Border Grid.Column="0"  
+                    Grid.Row="5"  
+                    Grid.RowSpan="9"  
+                    Margin="0,10,10,0"  
+                    Background="#1C1D21"  
+                    CornerRadius="8">  
+                <StackPanel>  
+                    <Button Content="[DATA]" Style="{StaticResource btnDefault}"/>  
+                    <Button Content="[DATA]" Style="{StaticResource btnDefault}"/>  
+                    <Button Content="[DATA]" Style="{StaticResource btnDefault}"/>  
+                    <controls:btnDefault />  
+                </StackPanel>  
+            </Border>  
+
+            <Border Grid.Column="1"  
+                    Grid.Row="5"  
+                    Grid.RowSpan="9"  
+                    Margin="0,10,10,0"  
+                    Background="#1C1D21"  
+                    CornerRadius="8">  
+                <StackPanel>  
+                    <Button Content="[DATA]" Style="{StaticResource btnDefault}"/>  
+                    <Button Content="[DATA]" Style="{StaticResource btnDefault}"/>  
+                    <Button Content="[DATA]" Style="{StaticResource btnDefault}"/>  
+                    <Button Content="[DATA]" Style="{StaticResource btnDefault}"/>  
+                    <Button Content="[DATA]" Style="{StaticResource btnDefault}"/>  
+                    <Button Content="[DATA]" Style="{StaticResource btnDefault}"/>  
+                    <Button Content="[CAM]" Command="{Binding CameraOn}" Style="{StaticResource btnDefault}"/>  
+                </StackPanel>  
+            </Border>  
+
+            <controls:dropDown Grid.Column="1"   
+                               Grid.Row="4"  
+                               Margin="0,0,25,10"  
+                               Title="QUEUE"  
+                               Foreground="White"   
+                               />  
+
+        </Grid>  
+    </Border>  
+</UserControl>
